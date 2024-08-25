@@ -6,6 +6,7 @@ import (
 	"github.com/Odvin/go-lessons/structures/list"
 	"github.com/Odvin/go-lessons/structures/queue"
 	"github.com/Odvin/go-lessons/structures/stack"
+	"github.com/Odvin/go-lessons/structures/tree"
 )
 
 func main() {
@@ -68,4 +69,17 @@ func main() {
 	fmt.Println(queue, qitem, err)
 	qitem, err = queue.Dequeue()
 	fmt.Println(queue, qitem, err)
+
+	fmt.Println("--- Tree ---")
+
+	root := tree.Node{Key: 100}
+	root.Insert(50)
+	root.Insert(2000)
+	root.Insert(200)
+
+	fmt.Println(root)
+	fmt.Println(root.Search(100), true)
+	fmt.Println(root.Search(300), false)
+	fmt.Println(root.Search(200), true)
+
 }
