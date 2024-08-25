@@ -1,4 +1,4 @@
-package linkedlisl
+package list
 
 import "testing"
 

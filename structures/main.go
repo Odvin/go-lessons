@@ -3,20 +3,20 @@ package main
 import (
 	"fmt"
 
-	linkedlisl "github.com/Odvin/go-lessons/structures/linked_list"
+	"github.com/Odvin/go-lessons/structures/list"
 	"github.com/Odvin/go-lessons/structures/stack"
 )
 
 func main() {
 	fmt.Println("--- Linkend List ---")
 
-	linkedList := linkedlisl.LinkedList{}
+	linkedList := list.LinkedList{}
 
-	nodeA := &linkedlisl.Node{Data: 1}
-	nodeB := &linkedlisl.Node{Data: 2}
-	nodeC := &linkedlisl.Node{Data: 3}
-	nodeD := &linkedlisl.Node{Data: 4}
-	nodeE := &linkedlisl.Node{Data: 5}
+	nodeA := &list.Node{Data: 1}
+	nodeB := &list.Node{Data: 2}
+	nodeC := &list.Node{Data: 3}
+	nodeD := &list.Node{Data: 4}
+	nodeE := &list.Node{Data: 5}
 
 	linkedList.Prepend(nodeA)
 	linkedList.Prepend(nodeB)
