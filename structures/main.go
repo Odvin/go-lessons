@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Odvin/go-lessons/structures/list"
+	"github.com/Odvin/go-lessons/structures/queue"
 	"github.com/Odvin/go-lessons/structures/stack"
 )
 
@@ -45,4 +46,26 @@ func main() {
 	fmt.Println(stack)
 	stack.Pop()
 	fmt.Println(stack)
+
+	fmt.Println("--- Queue ---")
+
+	queue := queue.Queue{}
+
+	fmt.Println(queue)
+	queue.Enqueue(100)
+	fmt.Println(queue)
+	queue.Enqueue(200)
+	fmt.Println(queue)
+	queue.Enqueue(300)
+	fmt.Println(queue)
+
+	fmt.Println(queue)
+	qitem, err := queue.Dequeue()
+	fmt.Println(queue, qitem, err)
+	qitem, err = queue.Dequeue()
+	fmt.Println(queue, qitem, err)
+	qitem, err = queue.Dequeue()
+	fmt.Println(queue, qitem, err)
+	qitem, err = queue.Dequeue()
+	fmt.Println(queue, qitem, err)
 }
