@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	fmt.Println("--- Linkend List ---")
+	fmt.Println("--- Linked List ---")
 
 	linkedList := list.LinkedList{}
 
@@ -62,14 +62,14 @@ func main() {
 	fmt.Println(queue)
 
 	fmt.Println(queue)
-	qitem, err := queue.Dequeue()
-	fmt.Println(queue, qitem, err)
-	qitem, err = queue.Dequeue()
-	fmt.Println(queue, qitem, err)
-	qitem, err = queue.Dequeue()
-	fmt.Println(queue, qitem, err)
-	qitem, err = queue.Dequeue()
-	fmt.Println(queue, qitem, err)
+	qItem, err := queue.Dequeue()
+	fmt.Println(queue, qItem, err)
+	qItem, err = queue.Dequeue()
+	fmt.Println(queue, qItem, err)
+	qItem, err = queue.Dequeue()
+	fmt.Println(queue, qItem, err)
+	qItem, err = queue.Dequeue()
+	fmt.Println(queue, qItem, err)
 
 	fmt.Println("--- Tree ---")
 
@@ -88,5 +88,4 @@ func main() {
 	trie := trie.InitTrie()
 	trie.Insert("test")
 	fmt.Println(trie.Search("test"))
-
 }
