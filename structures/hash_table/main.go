@@ -4,24 +4,24 @@ import "fmt"
 
 const ArraySize = 5
 
-type bucketNode struct {
+type node struct {
 	key  string
-	next *bucketNode
+	next *node
 }
 
 type bucket struct {
-	head   *bucketNode
+	head   *node
 	length int
 }
 
 type HashTable struct {
-	array [ArraySize]*bucket
+	buckets [ArraySize]*bucket
 }
 
 func InitHashTable() *HashTable {
 	hashTable := &HashTable{}
-	for i := range hashTable.array {
-		hashTable.array[i] = &bucket{}
+	for i := range hashTable.buckets {
+		hashTable.buckets[i] = &bucket{}
 	}
 
 	return hashTable
@@ -29,22 +29,22 @@ func InitHashTable() *HashTable {
 
 func (ht *HashTable) Insert(key string) {
 	index := hash(key)
-	ht.array[index].insert(key)
+	ht.buckets[index].insert(key)
 }
 
 func (ht *HashTable) Search(key string) bool {
 	index := hash(key)
-	return ht.array[index].search(key)
+	return ht.buckets[index].search(key)
 }
 
 func (ht *HashTable) Delete(key string) {
 	index := hash(key)
-	ht.array[index].delete(key)
+	ht.buckets[index].delete(key)
 }
 
 func (b *bucket) insert(key string) {
 	if !b.search(key) {
-		node := &bucketNode{key: key}
+		node := &node{key: key}
 		node.next = b.head
 		b.head = node
 		b.length++
@@ -52,12 +52,12 @@ func (b *bucket) insert(key string) {
 }
 
 func (b *bucket) search(key string) bool {
-	currentNode := b.head
-	for currentNode != nil {
-		if currentNode.key == key {
+	node := b.head
+	for node != nil {
+		if node.key == key {
 			return true
 		}
-		currentNode = currentNode.next
+		node = node.next
 	}
 	return false
 }
@@ -65,6 +65,7 @@ func (b *bucket) search(key string) bool {
 func (b *bucket) delete(key string) {
 	if b.head.key == key {
 		b.head = b.head.next
+		b.length--
 		return
 	}
 
@@ -72,6 +73,8 @@ func (b *bucket) delete(key string) {
 	for node.next != nil {
 		if node.next.key == key {
 			node.next = node.next.next
+			b.length--
+			return
 		}
 		node = node.next
 	}
@@ -96,7 +99,7 @@ func main() {
 	hashTable.Insert("BUTTERS")
 	hashTable.Insert("TOKEN")
 
-	fmt.Println(hashTable.Search("ERIC"))
-	hashTable.Delete("ERIC")
-	fmt.Println(hashTable.Search("ERIC"))
+	fmt.Println(hashTable.Search("TOKEN"))
+	hashTable.Delete("TOKEN")
+	fmt.Println(hashTable.Search("TOKEN"))
 }
