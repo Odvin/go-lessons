@@ -7,6 +7,7 @@ import (
 	"github.com/Odvin/go-lessons/structures/queue"
 	"github.com/Odvin/go-lessons/structures/stack"
 	"github.com/Odvin/go-lessons/structures/tree"
+	"github.com/Odvin/go-lessons/structures/trie"
 )
 
 func main() {
@@ -81,5 +82,11 @@ func main() {
 	fmt.Println(root.Search(100), true)
 	fmt.Println(root.Search(300), false)
 	fmt.Println(root.Search(200), true)
+
+	fmt.Println("--- Trie ---")
+
+	trie := trie.InitTrie()
+	trie.Insert("test")
+	fmt.Println(trie.Search("test"))
 
 }
