@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Go Todo List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800">YAT Application</h1>
+
+        <form method="POST" action="/add" class="mb-4">
+          <div class="flex gap-2">
+            <input
+              type="text"
+              name="task"
+              class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter new task"
+            />
+            <button
+              type="submit"
+              class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Add
+            </button>
+          </div>
+        </form>
+
+        <ul class="space-y-2">
+          {{range .Todos}}
+          <li
+            class="flex items-center justify-between bg-gray-50 p-3 rounded-lg"
+          >
+            <div class="flex items-center gap-3">
+              <form method="POST" action="/toggle">
+                <input type="hidden" name="id" value="{{.ID}}" />
+                <button
+                  type="submit"
+                  class="w-5 h-5 border rounded {{.CheckedClass}}"
+                >
+                  {{.CheckIcon}}
+                </button>
+              </form>
+              <span class="{{.TextStyle}}">{{.Task}}</span>
+            </div>
+            <form method="POST" action="/delete">
+              <input type="hidden" name="id" value="{{.ID}}" />
+              <button type="submit" class="text-red-500 hover:text-red-700">
+                ×
+              </button>
+            </form>
+          </li>
+          {{end}}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
