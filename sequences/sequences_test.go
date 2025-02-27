@@ -49,3 +49,16 @@ func TestSumAllTails(t *testing.T) {
 		checkSums(t, got, want)
 	})
 }
+
+func TestReversSlice(t *testing.T) {
+	input := []int{1, 2, 3, 4, 5}
+	result := []int{5, 4, 3, 2, 1}
+
+	ReversSlice(input)
+
+	for i, e := range result {
+		if e != input[i] {
+			t.Errorf("got %v want %v", e, input[i])
+		}
+	}
+}

@@ -32,3 +32,12 @@ func SumAllTails(numbersToSum ...[]int) []int {
 
 	return sums
 }
+
+func ReversSlice(input []int) {
+	n := len(input)
+	m := n / 2
+
+	for i := 0; i <= m; i++ {
+		input[i], input[n-i-1] = input[n-i-1], input[i]
+	}
+}
