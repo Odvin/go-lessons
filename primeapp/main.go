@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
 	"strings"
@@ -12,7 +13,7 @@ func main() {
 	intro()
 	doneChan := make(chan bool)
 
-	go readUserInput(doneChan)
+	go readUserInput(os.Stdin, doneChan)
 
 	<-doneChan
 	close(doneChan)
@@ -20,8 +21,8 @@ func main() {
 	fmt.Println("Goodbye!")
 }
 
-func readUserInput(doneChan chan bool) {
-	scanner := bufio.NewScanner(os.Stdin)
+func readUserInput(r io.Reader, doneChan chan bool) {
+	scanner := bufio.NewScanner(r)
 
 	for {
 		res, done := checkNumbers(scanner)
@@ -43,7 +44,7 @@ func checkNumbers(scanner *bufio.Scanner) (string, bool) {
 
 	numToCheck, err := strconv.Atoi(scanner.Text())
 	if err != nil {
-		return "Please enter a whole nubmer", false
+		return "Please enter a whole number", false
 	}
 
 	_, msg := isPrime(numToCheck)
